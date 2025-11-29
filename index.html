@@ -25,6 +25,76 @@
         <p class="text-xl text-gray-600 mb-6">Desenvolvedor Web | Especialista em [Sua Principal Habilidade]</p>
         <a href="#contato" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 shadow-lg">Fale Comigo</a>
     </main>
+
+    <section id="projetos" class="container mx-auto p-8 bg-white my-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center border-b-2 border-indigo-500 pb-2">Meus Projetos</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="border rounded-lg shadow-md hover:shadow-xl transition duration-300 overflow-hidden">
+            <img src="projeto1-capa.jpg" alt="Capa do Projeto 1" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Landing Page de Produto</h3>
+                <p class="text-gray-600 mb-4 text-sm">Criação de uma página única para conversão, usando HTML, **Tailwind CSS** e animações simples em JS.</p>
+                <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium">Ver Projeto &rarr;</a>
+            </div>
+        </div>
+
+        <div class="border rounded-lg shadow-md hover:shadow-xl transition duration-300 overflow-hidden">
+            <img src="projeto2-capa.jpg" alt="Capa do Projeto 2" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Blog Simples com CRUD</h3>
+                <p class="text-gray-600 mb-4 text-sm">Projeto com **Node.js** e MongoDB (ou Firebase) para gerenciar posts (Create, Read, Update, Delete).</p>
+                <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium">Ver Projeto &rarr;</a>
+            </div>
+        </div>
+
+        <div class="border rounded-lg shadow-md hover:shadow-xl transition duration-300 overflow-hidden">
+            <img src="projeto3-capa.jpg" alt="Capa do Projeto 3" class="w-full h-48 object-cover">
+            <div class="p-6">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Sistema de Tarefas (To-Do)</h3>
+                <p class="text-gray-600 mb-4 text-sm">Aplicação Front-end puramente com **JavaScript** para manipulação do DOM e armazenamento local (localStorage).</p>
+                <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium">Ver Projeto &rarr;</a>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<section id="contato" class="container mx-auto p-8 my-8">
+    <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-xl">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Entre em Contato</h2>
+        
+        <form id="contactForm" 
+           action="https://formspree.io/f/mwpddwkl" 
+           method="POST" 
+           class="space-y-4">
+            <div>
+                <label for="nome" class="block text-sm font-medium text-gray-700">Nome Completo</label>
+                <input type="text" id="nome" name="nome" required 
+                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" required 
+                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            
+            <div>
+                <label for="mensagem" class="block text-sm font-medium text-gray-700">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="4" required 
+                          class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+            </div>
+            
+            <button type="submit" 
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                Enviar Mensagem
+            </button>
+            <p id="formMessage" class="mt-4 text-center hidden"></p>
+        </form>
+    </div>
+</section>
     
     </body>
 </html>
