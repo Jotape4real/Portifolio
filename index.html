@@ -1,97 +1,454 @@
-
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>João Sader - Portfólio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 font-sans">
+    <title>Portfólio | João Sader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS - O ESTILO DO SITE --- */
+        html {
+            scroll-behavior: smooth; /* <--- ISSO MUDA TUDO */
+        }
+        
+        /* Reset básico para tirar margens padrão */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <header class="bg-white shadow p-4">
-        <nav class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-indigo-600">Seu Nome</h1>
-            <div class="space-x-4">
-                <a href="#sobre" class="text-gray-600 hover:text-indigo-600">Sobre</a>
-                <a href="#projetos" class="text-gray-600 hover:text-indigo-600">Projetos</a>
-                <a href="#contato" class="text-gray-600 hover:text-indigo-600">Contato</a>
-            </div>
-        </nav>
+        /* Variáveis de Cores (para mudar fácil depois) */
+        :root {
+            --bg-color: #121212;       /* Fundo quase preto */
+            --card-color: #1e1e1e;     /* Fundo dos cartões */
+            --text-color: #ffffff;     /* Texto branco */
+            --text-secondary: #aaaaaa; /* Texto cinza */
+            --accent-color: #00e676;   /* Verde Neon (Destaque) */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Classes Utilitárias */
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .section-title { font-size: 2rem; margin-bottom: 40px; text-align: center; }
+        .highlight { color: var(--accent-color); }
+
+        /* --- SEÇÃO 1: HERO (O TOPO) --- */
+        .hero {
+            text-align: center;
+            padding: 140px 20px 60px;
+        }
+
+        /* ATENÇÃO: Coloque sua foto numa pasta 'img' e mude o nome aqui */
+        .profile-img {
+            width: 160px; height: 160px;
+            border-radius: 50%; /* Redondo */
+            border: 4px solid var(--accent-color);
+            object-fit: cover; /* Garante que a foto não estique */
+            margin-bottom: 25px;
+        }
+
+        .hero h1 { font-size: 2.8rem; font-weight: 600; }
+        .hero .tagline { font-size: 1.3rem; color: var(--text-secondary); margin-top: 10px; }
+
+        /* --- SEÇÃO 2: PROJETOS (O CORAÇÃO DO SITE) --- */
+        .projects-section { padding: 60px 20px; background-color: #181818; }
+        
+        /* Grid para organizar os cartões dos projetos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo automático */
+            gap: 30px;
+        }
+
+        /* O Cartão do Projeto */
+        .project-card {
+    /* ... mantenha o que já tem ... */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra preta suave */
+    border: 1px solid #2a2a2a; /* Borda bem fininha e discreta */
+}
+
+        .project-card:hover { transform: translateY(-5px); /* Sobe um pouco ao passar o mouse */ }
+
+        /* A área da imagem/GIF do projeto */
+        .project-visual {
+    height: 250px; /* Aumente um pouco a altura para mostrar mais do print */
+    background-size: cover; /* Garante que cubra tudo */
+   background-position: center 45%; /* Foca no topo da imagem (onde geralmente está o título) */
+    border-bottom: 1px solid #333; /* Uma linha sutil separando a imagem do texto */
+    
+}
+
+        .project-info {
+    padding: 30px; /* Aumentei de 25px para 30px para dar mais respiro */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Organiza melhor o espaço vertical */
+}
+        .project-info h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .project-info p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
+
+        /* Tecnologias (as "pílulas" coloridas) */
+        .tech-stack { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tech-badge {
+            background-color: #333;
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Botões do Projeto */
+        .project-links { display: flex; gap: 15px; }
+        .btn {
+    padding: 10px 25px;      /* Mais espaço interno no botão */
+    border-radius: 8px;      /* Bordas um pouco mais arredondadas */
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase; /* Deixa as letras em CAIXA ALTA (fica mais pro) */
+    letter-spacing: 1px;     /* Espacinho entre as letras */
+    
+}
+        /* Botão principal (preenchido) */
+        .btn-primary { background-color: var(--accent-color); color: #000; }
+        .btn-primary:hover { background-color: #00c766; }
+        /* Botão secundário (só borda) */
+        .btn-outline { border: 2px solid var(--accent-color); color: var(--accent-color); }
+        .btn-outline:hover { background-color: var(--accent-color); color: #000; }
+
+        /* --- SEÇÃO 3 & 4: SOBRE E CONTATO --- */
+        /* --- ESTILO DOS CARTÕES DE CONTATO --- */
+        .contact-section {
+            padding: 80px 20px;
+            background-color: #151515; /* Um fundo levemente diferente para separar */
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap; /* Para funcionar no celular */
+        }
+
+        /* O Cartão (Quadrado) */
+        .contact-card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 30px;
+            width: 160px;  /* Tamanho fixo */
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease; /* Animação suave */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-card .icon {
+            font-size: 3rem; /* Tamanho do Emoji */
+            margin-bottom: 10px;
+        }
+
+        .contact-card .label {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* EFEITO QUANDO PASSA O MOUSE (HOVER) */
+        .contact-card:hover {
+            border-color: #00e676;       /* Borda Verde Neon */
+            color: #00e676;              /* Texto Verde Neon */
+            transform: translateY(-10px); /* Sobe um pouquinho */
+            box-shadow: 0 10px 20px rgba(0, 230, 118, 0.2); /* Brilho verde */
+        }
+
+        
+
+        footer {
+            text-align: center; padding: 30px; color: var(--text-secondary);
+            font-size: 0.9rem; background-color: #0a0a0a;
+        }
+        
+        /* Ajuste para celulares muito pequenos */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .project-links { flex-direction: column; }
+        }
+        /* --- SEÇÃO SOBRE MIM ESTILIZADA --- */
+        .about-section {
+            padding: 80px 20px;
+            background-color: #121212; /* Fundo escuro */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-section .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            position: relative; /* Necessário para o detalhe verde */
+            display: inline-block;
+        }
+
+        /* O charme: Um risco verde neon embaixo do título */
+        .about-section .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;       /* Tamanho do risco */
+            height: 4px;       /* Grossura */
+            background-color: var(--accent-color); /* A cor verde do seu tema */
+            margin: 10px auto 0; /* Centraliza */
+            border-radius: 2px;
+        }
+
+        /* O TEXTO (Transformado em um Card) */
+        .about-text {
+            max-width: 800px;
+            background-color: #1e1e1e; /* Fundo cinza um pouco mais claro */
+            padding: 40px;             /* Espaço interno generoso */
+            border-radius: 12px;       /* Cantos arredondados */
+            
+            /* Detalhe Premium: Borda verde só na esquerda */
+            border-left: 5px solid var(--accent-color); 
+            
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra para "flutuar" */
+            
+            font-size: 1.1rem;
+            line-height: 1.8;      /* Altura da linha para ler melhor */
+            color: #d1d1d1;        /* Cor do texto suave */
+            text-align: left;      /* Texto alinhado à esquerda fica mais chique no card */
+        }
+
+        /* Destacar as palavras em negrito (<strong>) com a cor verde */
+        .about-text strong {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        /* --- NAVBAR (MENU FIXO) --- */
+        .navbar {
+            position: fixed; /* Fica preso no topo */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 18, 0.9); /* Fundo quase preto transparente */
+            backdrop-filter: blur(10px); /* O CHARME: Efeito de vidro embaçado */
+            z-index: 1000; /* Garante que fique em cima de tudo */
+            border-bottom: 1px solid #333;
+        }
+
+        .nav-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color); /* Suas iniciais em verde neon */
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* Botãozinho especial do menu */
+        .btn-nav {
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: var(--accent-color) !important;
+        }
+        .btn-nav:hover { background-color: var(--accent-color); color: black !important; }
+        /* --- ANIMAÇÕES --- */
+        
+        /* Definindo a animação 'pulsar' */
+        @keyframes pulsar {
+            0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 230, 118, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+        }
+
+        /* Aplicando na sua foto de perfil */
+        .profile-img {
+            /* ... mantenha o que já estava aqui ... */
+            animation: pulsar 2s infinite; /* A foto vai pulsar infinitamente */
+        }
+    </style>
+</head>
+<body>
+
+
+
+<nav class="navbar">
+        <div class="nav-content">
+            <span class="logo">JS.</span> <ul class="nav-links">
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#contact" class="btn-nav">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+    <header class="hero">
+        <div class="container">
+            <!-- <img src="https://via.placeholder.com/160" alt="Foto de João Sader" class="profile-img">  -->
+            
+            <h1>Olá, eu sou <span class="highlight">João Sader</span></h1>
+            <p class="tagline">Desenvolvedor Web Full Stack | Python, MySQL & Front-end</p>
+            <br>
+           <a href="https://wa.me/5551995790715" target="_blank" class="btn btn-primary">
+    Chamar no WhatsApp
+</a>
+        </div>
     </header>
 
-    <main id="sobre" class="container mx-auto p-8 text-center">
-        <img class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" src="sua-foto.jpg" alt="Sua Foto">
-        <h2 class="text-4xl font-extrabold text-gray-800 mb-2">Olá, eu sou João Pedro Sader</h2>
-        <p class="text-xl text-gray-600 mb-6">Desenvolvedor Web | Especialista em [Sua Principal Habilidade]</p>
-        <a href="#contato" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 shadow-lg">Fale Comigo</a>
-    </main>
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Meus Projetos Recentes</h2>
+            
+            <div class="projects-grid">
 
-    <section id="projetos" class="container mx-auto p-8 bg-white my-8 rounded-lg shadow-xl">
-    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center border-b-2 border-indigo-500 pb-2">Meus Projetos</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <div class="border rounded-lg shadow-md hover:shadow-xl transition duration-300 overflow-hidden">
-            <img src="projeto1-capa.jpg" alt="Capa do Projeto 1" class="w-full h-48 object-cover">
-            <div class="p-6">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Landing Page de Produto</h3>
-                <p class="text-gray-600 mb-4 text-sm">Criação de uma página única para conversão, usando HTML, **Tailwind CSS** e animações simples em JS.</p>
-                <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium">Ver Projeto &rarr;</a>
+                <div class="project-card">
+                    <div class="project-visual" style="background-image: url('https://via.placeholder.com/400x250/333/00e676?text=Detector+YOLOv8');"></div>
+                    
+                    <div class="project-info">
+                        <h3>Detector de Objetos em Tempo Real</h3>
+                        <p>Sistema capaz de identificar e classificar mais de 80 tipos de objetos (pessoas, carros, etc.) via webcam com alta precisão.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">OpenCV</span>
+                            <span class="tech-badge">YOLOv8 (AI)</span>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="https://github.com/JoaoSader/Detector-de-Imagem" target="_blank" class="btn btn-outline">Ver Código</a>
+                             </div>
+                    </div>
+                </div>
+
+                <!-- <div class="project-card">
+                     <div class="project-visual" style="background-image: url('https://via.placeholder.com/400x250/444/00e676?text=Controle+por+Gestos');"></div>
+                    
+                    <div class="project-info">
+                        <h3>Mouse Mágico (Controle de Volume)</h3>
+                        <p>Automação que permite controlar o volume do computador apenas usando gestos de pinça com as mãos na webcam.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">MediaPipe</span>
+                            <span class="tech-badge">PyAutoGUI</span>
+                        </div>
+
+                        <div class="project-links">
+                             <a href="https://github.com/SEU-USUARIO/NOME-DO-REPO" target="_blank" class="btn btn-outline">Ver Código</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                     <div class="project-visual" style="background-image: url('https://via.placeholder.com/400x250/555/00e676?text=Rastreador+de+Pre%C3%A7os');"></div>
+                    
+                    <div class="project-info">
+                        <h3>Bot Rastreador de Ofertas</h3>
+                        <p>Robô que monitora sites de e-commerce (como Mercado Livre) e alerta automaticamente quando um produto atinge um preço alvo.</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Requests</span>
+                            <span class="tech-badge">BeautifulSoup</span>
+                        </div>
+
+                        <div class="project-links">
+                             <a href="https://github.com/SEU-USUARIO/NOME-DO-REPO" target="_blank" class="btn btn-outline">Ver Código</a>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div> </div>
+            <div class="project-card">
+                <div class="project-visual" style="background-image: url('img/fundo-roxo.png');"></div>
+                    
+                    <div class="project-info">
+                        <h3>Calculadora de Notas</h3> <p>Site com foco em calcular as notas da minha escola em específico</p>
+                        
+                        <div class="tech-stack">
+                            <span class="tech-badge">HTML5</span>
+                            <span class="tech-badge">CSS3</span>
+                            <span class="tech-badge">JavaScript</span>
+                        </div>
+
+                        <div class="project-links">
+                            <a href="https://joaosader.github.io/Calculadora-/" target="_blank" class="btn btn-primary">Ver Online</a>
+                            
+                            <a href="https://github.com/JoaoSader/Calculadora-" target="_blank" class="btn btn-outline">Ver Código</a>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">Sobre Mim</h2>
+            <p class="about-text">
+    Sou um desenvolvedor focado na criação de <strong>Sites e Sistemas Web</strong> completos.
+    <br><br>
+    Meu trabalho vai além do visual: construo interfaces modernas e responsivas, mas minha verdadeira força está no <strong>Back-end</strong>. 
+    Tenho domínio de <strong>Python</strong> e gerenciamento de bancos de dados <strong>MySQL</strong>, garantindo que meus projetos sejam bonitos por fora e poderosos por dentro.
+    <br><br>
+    Meu objetivo é unir o design com a lógica de dados para entregar soluções funcionais e eficientes.
+</p>
+        </div>
+<section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Vamos Conversar?</h2>
+            <p style="color: #aaa; margin-bottom: 40px;">Me mande uma mensagem em qualquer rede abaixo:</p>
+            
+            <div class="contact-links">
+                <a href="https://linkedin.com/in/SEU-LINKEDIN" target="_blank" class="contact-card">
+                    <span class="icon">👔</span>
+                    <span class="label">LinkedIn</span>
+                </a>
+
+                <a href="https://github.com/JoaoSader" target="_blank" class="contact-card">
+                    <span class="icon">💻</span>
+                    <span class="label">GitHub</span>
+                </a>
+
+                <a href="mailto:joaosader399@gmail.com" class="contact-card">
+                    <span class="icon">📧</span>
+                    <span class="label">E-mail</span>
+                </a>
             </div>
         </div>
-
-        <div class="border rounded-lg shadow-md hover:shadow-xl transition duration-300 overflow-hidden">
-            <img src="projeto2-capa.jpg" alt="Capa do Projeto 2" class="w-full h-48 object-cover">
-            <div class="p-6">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Blog Simples com CRUD</h3>
-                <p class="text-gray-600 mb-4 text-sm">Projeto com **Node.js** e MongoDB (ou Firebase) para gerenciar posts (Create, Read, Update, Delete).</p>
-                <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium">Ver Projeto &rarr;</a>
-            </div>
-        </div>
-
-        <div class="border rounded-lg shadow-md hover:shadow-xl transition duration-300 overflow-hidden">
-            <img src="projeto3-capa.jpg" alt="Capa do Projeto 3" class="w-full h-48 object-cover">
-            <div class="p-6">
-                <h3 class="text-xl font-semibold text-indigo-600 mb-2">Sistema de Tarefas (To-Do)</h3>
-                <p class="text-gray-600 mb-4 text-sm">Aplicação Front-end puramente com **JavaScript** para manipulação do DOM e armazenamento local (localStorage).</p>
-                <a href="#" class="text-indigo-500 hover:text-indigo-700 font-medium">Ver Projeto &rarr;</a>
-            </div>
-        </div>
+    </section>
         
-    </div>
-</section>
-
-<section id="contato" class="container mx-auto p-8 my-8">
-    <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-xl">
-        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Entre em Contato</h2>
-        
-        <form id="contactForm" 
-           action="https://formspree.io/f/mwpddwkl" 
-           method="POST" 
-           class="space-y-4">
-            <div>
-                <label for="nome" class="block text-sm font-medium text-gray-700">Nome Completo</label>
-                <input type="text" id="nome" name="nome" required 
-                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500">
-            </div>
-            
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email" required 
-                       class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500">
-            </div>
-            
-            <div>
-                <label for="mensagem" class="block text-sm font-medium text-gray-700">Mensagem</label>
-                <textarea id="mensagem" name="mensagem" rows="4" required 
-                          class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
-            </div>
-            
-            <button type="submit" 
-                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
-                Enviar Mensagem
-            </button>
-            <p id="formMessage" class="mt-4 text-center hidden"></p>
-        </form>
-    </div>
-</section>
-    
-    </body>
-</html>
+    </section>
